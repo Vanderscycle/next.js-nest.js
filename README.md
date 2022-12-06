@@ -36,4 +36,5 @@ Init the app from the cli,
 import * as dotenv from 'dotenv';
 dotenv.config({ path: __dirname + '/.env' });
 ```
-* Configuring env [management](https://docs.nestjs.com/techniques/configuration#getting-started)
+* Configuring env [management](https://docs.nestjs.com/techniques/configuration#getting-started) where I wanted to use NestJs own dotenv config `@nestjs/config` and this [tutorial](https://betterprogramming.pub/nest-js-project-with-typeorm-and-postgres-ce6b5afac3be)
+* the start-db.sh should be replaced by a a more versatile
