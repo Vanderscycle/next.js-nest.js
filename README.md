@@ -11,6 +11,10 @@ Fullstack template to learn React
 * learn more about next.js/react structure
 * infrastructure (k8s) 
 
+## Backend synopsis
+
+Init the app from the cli, 
+
 ## References
 
 ### Frontend
@@ -24,3 +28,12 @@ Fullstack template to learn React
 ### Backend
 * [Nest.js](https://docs.nestjs.com/)
 * [Fastify](https://www.fastify.io/docs/latest/)
+### Issues
+* connecting the db
+```
+// require('dotenv').config();
+// https://stackoverflow.com/questions/62287709/environment-variable-with-dotenv-and-typescript
+import * as dotenv from 'dotenv';
+dotenv.config({ path: __dirname + '/.env' });
+```
+* Configuring env [management](https://docs.nestjs.com/techniques/configuration#getting-started)
