@@ -19,7 +19,7 @@ async function bootstrap() {
   // app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   await app.listen(port, () => {
-    console.log(`[WEB] ${url}:${port}`);
+    console.log(`[WEB] 🚀 ${url}:${port}`);
   });
 }
 bootstrap();

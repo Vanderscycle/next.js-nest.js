@@ -24,6 +24,12 @@ Init the app from the cli,
 * React [documentation](https://reactjs.org/docs/getting-started.html)
 #### Issues
 * Next.js + Tailwind [integration](https://stackoverflow.com/questions/74259178/how-can-i-apply-tailwind-css-in-app-folder-in-next-13)
+* type error
+```  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    ignoreBuildErrors: true,
+  },```
 
 ### Backend
 * [Nest.js](https://docs.nestjs.com/)
