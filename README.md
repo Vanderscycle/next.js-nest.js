@@ -10,6 +10,7 @@ Fullstack template to learn React
 * add cypress testing (frontend)
 * learn more about next.js/react structure
 * infrastructure (k8s) 
+* nestjs password are stored unencrypted. hash and secure them (bcrypt.js?)
 
 ## Backend synopsis
 
@@ -22,6 +23,9 @@ Init the app from the cli,
 * MUI and Tailwind [install](https://tailwindcss.com/docs/guides/create-react-app)
 * [zustand](https://github.com/pmndrs/zustand) store
 * React [documentation](https://reactjs.org/docs/getting-started.html)
+### Backend
+* [auth/jwt](https://www.youtube.com/watch?v=_L225zpUK0M)
+
 #### Issues
 * Next.js + Tailwind [integration](https://stackoverflow.com/questions/74259178/how-can-i-apply-tailwind-css-in-app-folder-in-next-13)
 * type error

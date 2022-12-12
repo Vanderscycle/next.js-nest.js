@@ -4,6 +4,6 @@ import { ProjectApiController } from './project-api.controller';
 
 @Module({
   controllers: [ProjectApiController],
-  providers: [ProjectApiService]
+  providers: [ProjectApiService],
 })
 export class ProjectApiModule {}
