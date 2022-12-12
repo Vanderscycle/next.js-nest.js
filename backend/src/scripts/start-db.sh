@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 # env $(cat ../common/envs/development.env | xargs)
-eval $(cat ../common/envs/development.env )
+ENV_PATH="$PWD/src/common/envs/development.env"
+source "$ENV_PATH"
 
-SERVER="my_database_server";
+# echo "$DATABASE_NAME"
+
+#TODO: fix lvim rename
+SERVER="$DATABASE_NAME";
 DATABASE_PASSWORD="root";
 DATABASE_NAME="project";
 
