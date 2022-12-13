@@ -6,12 +6,12 @@ import {
   Patch,
   Param,
   Delete,
-} from "@nestjs/common";
-import { ProjectApiService } from "./project-api.service";
-import { CreateProjectApiDto } from "./dto/create-project-api.dto";
-import { UpdateProjectApiDto } from "./dto/update-project-api.dto";
+} from '@nestjs/common';
+import { ProjectApiService } from './project-api.service';
+import { CreateProjectApiDto } from './dto/create-project-api.dto';
+import { UpdateProjectApiDto } from './dto/update-project-api.dto';
 
-@Controller("project-api")
+@Controller('project-api')
 export class ProjectApiController {
   constructor(private readonly projectApiService: ProjectApiService) {}
 
@@ -25,21 +25,21 @@ export class ProjectApiController {
     return this.projectApiService.findAll();
   }
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
+  @Get(':id')
+  findOne(@Param('id') id: string) {
     return this.projectApiService.findOne(+id);
   }
 
-  @Patch(":id")
+  @Patch(':id')
   update(
-    @Param("id") id: string,
+    @Param('id') id: string,
     @Body() updateProjectApiDto: UpdateProjectApiDto,
   ) {
     return this.projectApiService.update(+id, updateProjectApiDto);
   }
 
-  @Delete(":id")
-  remove(@Param("id") id: string) {
+  @Delete(':id')
+  remove(@Param('id') id: string) {
     return this.projectApiService.remove(+id);
   }
 }

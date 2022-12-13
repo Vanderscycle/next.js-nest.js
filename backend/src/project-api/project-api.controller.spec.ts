@@ -1,8 +1,8 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { ProjectApiController } from "./project-api.controller";
-import { ProjectApiService } from "./project-api.service";
+import { Test, TestingModule } from '@nestjs/testing';
+import { ProjectApiController } from './project-api.controller';
+import { ProjectApiService } from './project-api.service';
 
-describe("ProjectApiController", () => {
+describe('ProjectApiController', () => {
   let controller: ProjectApiController;
 
   beforeEach(async () => {
@@ -14,7 +14,7 @@ describe("ProjectApiController", () => {
     controller = module.get<ProjectApiController>(ProjectApiController);
   });
 
-  it("should be defined", () => {
+  it('should be defined', () => {
     expect(controller).toBeDefined();
   });
 });

@@ -1,11 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import { CreateProjectApiDto } from "./dto/create-project-api.dto";
-import { UpdateProjectApiDto } from "./dto/update-project-api.dto";
+import { Injectable } from '@nestjs/common';
+import { CreateProjectApiDto } from './dto/create-project-api.dto';
+import { UpdateProjectApiDto } from './dto/update-project-api.dto';
 
 @Injectable()
 export class ProjectApiService {
   create(createProjectApiDto: CreateProjectApiDto) {
-    return "This action adds a new projectApi";
+    return 'This action adds a new projectApi';
   }
 
   findAll() {
