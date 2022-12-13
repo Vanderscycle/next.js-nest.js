@@ -1,5 +1,5 @@
 dev-start:
-	# make dev-db
+	make dev-db
 	(cd ./backend/ && pnpm run start:dev)
 #WARN: will drop db
 dev-db: 

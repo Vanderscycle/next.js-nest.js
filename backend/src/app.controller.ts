@@ -7,6 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AppService } from './app.service';
+import { AuthenticatedGuard } from './auth/authenticated.guard';
 import { LoginDto } from './auth/dto/login.dto';
 import { LocalAuthguard } from './auth/local-auth.guard';
 @Controller()
@@ -16,16 +17,12 @@ export class AppController {
   @UseGuards(LocalAuthguard)
   @Post('login')
   async login(@Request() req: any) {
-    return req.user;
-    // return 'hello';
+    return { msg: 'Logged in' }; //TODO: return JWT access token
   }
-  // async login(@Body() payload: LoginDto): Promise<any> {
-  //   console.log('echo input', payload);
-  //   return payload.username;
-  // }
 
+  // @UseGuards(AuthenticatedGuard)
   @Get('protected')
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.getHello(); //TODO: require the token and a valid token
   }
 }
