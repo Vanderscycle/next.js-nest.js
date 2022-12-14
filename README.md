@@ -25,7 +25,7 @@ Init the app from the cli,
 * React [documentation](https://reactjs.org/docs/getting-started.html)
 ### Backend
 * [auth/jwt](https://www.youtube.com/watch?v=_L225zpUK0M)
-
+* [configService](https://progressivecoder.com/one-stop-guide-to-nestjs-config-environment-variables/) guide
 #### Issues
 * Next.js + Tailwind [integration](https://stackoverflow.com/questions/74259178/how-can-i-apply-tailwind-css-in-app-folder-in-next-13)
 * type error
@@ -47,6 +47,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: __dirname + '/.env' });
 ```
 * Configuring env [management](https://docs.nestjs.com/techniques/configuration#getting-started) where I wanted to use NestJs own dotenv config `@nestjs/config` and this [tutorial](https://betterprogramming.pub/nest-js-project-with-typeorm-and-postgres-ce6b5afac3be)
-* the start-db.sh should be replaced by a a more versatile
+* the start-db.sh should be replaced by a more versatile
 * swagger apipropreties nott working
 * esling/prettier rules
+* learning about import inside [@modules](hhttps://github.com/nestjs/jwt#async-options)
