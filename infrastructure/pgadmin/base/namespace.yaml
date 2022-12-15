@@ -1,0 +1,10 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: pgadmin
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/part-of: fullstack-website
+  namespace: pgadmin

@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: manual
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/part-of: fullstack-website
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+reclaimPolicy: Retain

@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - backend/kustomization.yaml
+  - frontend/kustomization.yaml
+  - pgadmin/kustomization.yaml
+  - postgresql/kustomization.yaml

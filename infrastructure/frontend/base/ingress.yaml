@@ -1,0 +1,21 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextjs
+  labels:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: nextjs
+    app.kubernetes.io/name: nextjs
+spec:
+  rules:
+    - host: my.app.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextjs
+                port:
+                  name: http

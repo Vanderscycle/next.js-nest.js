@@ -1,0 +1,10 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  labels:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: nextjs
+    app.kubernetes.io/name: nextjs
+    app.kubernetes.io/part-of: fullstack-website
+  name: nextjs
+  namespace: nextjs

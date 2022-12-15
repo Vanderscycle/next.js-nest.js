@@ -1,0 +1,12 @@
+#ttps://kubernetes.io/docs/concepts/configuration/configmap/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: nextjs
+    app.kubernetes.io/name: nextjs
+    app.kubernetes.io/part-of: fullstack-website
+  name: nextjs-config
+data:
+  key: value

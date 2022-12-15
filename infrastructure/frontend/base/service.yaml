@@ -1,0 +1,23 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: nextjs
+    app.kubernetes.io/name: nextjs
+    app.kubernetes.io/part-of: fullstack-website
+  name: frontend
+spec:
+  selector:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: nextjs
+    app.kubernetes.io/name: nextjs
+  type: ClusterIP
+  # type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: http
+      # nodePort: 30300

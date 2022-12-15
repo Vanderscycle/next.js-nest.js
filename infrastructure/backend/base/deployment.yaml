@@ -1,0 +1,41 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: nestjs
+    app.kubernetes.io/name: nestjs
+    app.kubernetes.io/part-of: fullstack-website
+  name: nestjs
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: nestjs
+      app.kubernetes.io/name: nestjs
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/instance: nestjs
+        app.kubernetes.io/name: nestjs
+    spec:
+      containers:
+        - name: nestjs
+          image: vandercycle/professional-website-backend:latest
+          envFrom:
+            - configMapRef:
+                name: nestjs-config
+          resources:
+            requests:
+              cpu: 300m
+              memory: 256Mi
+            limits:
+              memory: 256Mi
+          ports:
+            - name: http
+              containerPort: 5000

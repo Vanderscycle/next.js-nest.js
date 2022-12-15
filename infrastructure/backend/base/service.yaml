@@ -1,0 +1,23 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: nestjs
+    app.kubernetes.io/name: nestjs
+    app.kubernetes.io/part-of: fullstack-website
+  name: gofiber
+spec:
+  selector:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: nestjs
+    app.kubernetes.io/name: nestjs
+  # type: ClusterIP
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5000
+      nodePort: 30500
+      # targetPort: http

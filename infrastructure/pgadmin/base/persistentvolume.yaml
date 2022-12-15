@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: manual
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/part-of: fullstack-website
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"

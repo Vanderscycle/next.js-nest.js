@@ -1,0 +1,16 @@
+# https://kubernetes.io/docs/concepts/configuration/configmap/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: nestjs
+    app.kubernetes.io/name: nestjs
+    app.kubernetes.io/part-of: professional-website
+  name: nestjs-config
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: root
+  POSTGRES_PORT: "5432"
+  POSTGRES_HOST: 10.244.0.6 # kubectl get po -o wide  (there has to be a better way)

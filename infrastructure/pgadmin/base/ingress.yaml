@@ -1,0 +1,22 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/part-of: fullstack-website
+  name: pgadmin
+spec:
+  rules:
+    - host: my.app.pgadmin.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pgadmin
+                port:
+                  name: http

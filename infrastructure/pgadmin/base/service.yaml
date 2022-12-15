@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/part-of: fullstack-website
+spec:
+  selector:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: pgadmin
+    app.kubernetes.io/name: pgadmin
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+      # nodePort: 30200
