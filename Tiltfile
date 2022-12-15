@@ -45,9 +45,9 @@ docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./b
 k8s_fullstack="./infrastructure/overlays/non-prod"
 k8s_yaml([kustomize(k8s_fullstack)])
 
-k8s_resource('nextjs',labels="frontend",port_forwards=port_forward(3000,name="sveltekit"))
+k8s_resource('nextjs',labels="frontend",port_forwards=port_forward(3000,name="nextjs"))
 k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-k8s_resource('nestjs',labels="backend",port_forwards=5000)
+k8s_resource('nestjs',labels="backend",port_forwards=3001,name="nestjs")
 
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
