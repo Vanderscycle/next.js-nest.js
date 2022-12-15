@@ -3,3 +3,4 @@
 
 (cd ./backend && pnpm run lint)
 (cd ./frontend && pnpm run lint)
+pnpm run lint:infrastructure

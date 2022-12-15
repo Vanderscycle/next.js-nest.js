@@ -1,6 +1,10 @@
 {
-	"devDependencies": {
-		"husky": "^8.0.2",
-		"lint-staged": "^13.1.0"
-	}
+  "scripts": {
+    "lint:infrastructure": "yamllint ./infrastructure/**/*.{yaml,yml} --fix"
+  },
+  "devDependencies": {
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "yaml-lint": "^1.7.0"
+  }
 }
