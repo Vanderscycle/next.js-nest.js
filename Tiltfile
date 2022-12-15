@@ -21,6 +21,9 @@ print("""
 warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
     tiltfile_path=config.main_path))
 
+# Variables
+sync_src_frontend= sync('./frontend', '/src')
+sync_src_backend= sync('./backend', '/src')
 
 # Build Docker image
 #   Tilt will automatically associate image builds with the resource(s)
@@ -28,22 +31,9 @@ warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.forma
 #
 #   More info: https://docs.tilt.dev/api.html#api.docker_build
 #
-# docker_build('registry.example.com/my-image',
-#              context='.',
-#              # (Optional) Use a custom Dockerfile path
-#              dockerfile='./deploy/app.dockerfile',
-#              # (Optional) Filter the paths used in the build
-#              only=['./app'],
-#              # (Recommended) Updating a running container in-place
-#              # https://docs.tilt.dev/live_update_reference.html
-#              live_update=[
-#                 # Sync files from host to container
-#                 sync('./app', '/src/'),
-#                 # Execute commands inside the container when certain
-#                 # paths change
-#                 run('/src/codegen.sh', trigger=['./app/api'])
-#              ]
-# )
+
+docker_build('localhost:5005/frontend-nextjs', context='./frontend', dockerfile='./frontend/Dockerfile', live_update=[sync_src_frontend] )
+docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./backend/Dockerfile', live_update=[sync_src_backend])
 
 
 # Apply Kubernetes manifests
@@ -52,8 +42,12 @@ warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.forma
 #
 #   More info: https://docs.tilt.dev/api.html#api.k8s_yaml
 #
-# k8s_yaml(['k8s/deployment.yaml', 'k8s/service.yaml'])
+k8s_fullstack="./infrastructure/overlays/non-prod"
+k8s_yaml([kustomize(k8s_fullstack)])
 
+k8s_resource('nextjs',labels="frontend",port_forwards=port_forward(3000,name="sveltekit"))
+k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
+k8s_resource('nestjs',labels="backend",port_forwards=5000)
 
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
@@ -107,17 +101,17 @@ load('ext://git_resource', 'git_checkout')
 #
 #   More info: https://docs.tilt.dev/tiltfile_concepts.html
 #
-def tilt_demo():
-    # Tilt provides many useful portable built-ins
-    # https://docs.tilt.dev/api.html#modules.os.path.exists
-    if os.path.exists('tilt-avatars/Tiltfile'):
-        # It's possible to load other Tiltfiles to further organize
-        # your logic in large projects
-        # https://docs.tilt.dev/multiple_repos.html
-        load_dynamic('tilt-avatars/Tiltfile')
-    watch_file('tilt-avatars/Tiltfile')
-    git_checkout('https://github.com/tilt-dev/tilt-avatars.git',
-                 checkout_dir='tilt-avatars')
+# def tilt_demo():
+#     # Tilt provides many useful portable built-ins
+#     # https://docs.tilt.dev/api.html#modules.os.path.exists
+#     if os.path.exists('tilt-avatars/Tiltfile'):
+#         # It's possible to load other Tiltfiles to further organize
+#         # your logic in large projects
+#         # https://docs.tilt.dev/multiple_repos.html
+#         load_dynamic('tilt-avatars/Tiltfile')
+#     watch_file('tilt-avatars/Tiltfile')
+#     git_checkout('https://github.com/tilt-dev/tilt-avatars.git',
+#                  checkout_dir='tilt-avatars')
 
 
 # Edit your Tiltfile without restarting Tilt

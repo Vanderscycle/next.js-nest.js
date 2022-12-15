@@ -14,7 +14,7 @@ kind: Cluster
 product: kind
 registry: ctlptl-registry
 kindV1Alpha4Cluster:
-  name: infrastructure-professional-website
+  name: infrastructure-website
   nodes:
     - role: control-plane
     - role: worker

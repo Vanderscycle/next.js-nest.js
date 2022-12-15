@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../frontend/overlays/non-prod
+  - ../../pgadmin/overlays/non-prod
+  - ../../postgres/overlays/non-prod
+  - ../../backend/overlays/non-prod
+patches:
+  - target:
+      kind: Deployment
+      name: nestjs
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: localhost:5005/backend-nestjs
+  - target:
+      kind: Deployment
+      name: nextjs
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: localhost:5005/frontend-nextjs
