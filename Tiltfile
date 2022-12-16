@@ -46,9 +46,8 @@ k8s_fullstack="./infrastructure/overlays/non-prod"
 k8s_yaml([kustomize(k8s_fullstack)])
 
 k8s_resource('nextjs',labels="frontend",port_forwards=port_forward(3000,name="nextjs"))
-k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-k8s_resource('nestjs',labels="backend",port_forwards=3001,name="nestjs")
-
+k8s_resource('pgadmin',labels="backend",port_forwards=port_forward(8000,name="pgadmin"))
+k8s_resource('nestjs',labels="backend",port_forwards=port_forward(5000,name="nestjs"))
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
 #   based on objects in the YAML manifests, e.g. Deployment name.

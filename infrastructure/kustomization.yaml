@@ -6,3 +6,4 @@ resources:
   - frontend/kustomization.yaml
   - pgadmin/kustomization.yaml
   - postgresql/kustomization.yaml
+  - ingress/kustomization.yaml

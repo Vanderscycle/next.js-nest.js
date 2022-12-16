@@ -13,6 +13,7 @@ spec:
     app.kubernetes.io/instance: postgres
     app.kubernetes.io/name: postgres
   # type: ClusterIP
+  # type: LoadBalancer
   type: NodePort
   ports:
     - name: http
