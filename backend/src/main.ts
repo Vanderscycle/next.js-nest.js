@@ -16,6 +16,7 @@ async function bootstrap() {
   const config: ConfigService = app.get(ConfigService);
   const port: number = config.get<number>('BASE_PORT');
   const url: string = config.get<string>('BASE_HOST');
+  console.log(port, url);
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Cats example')

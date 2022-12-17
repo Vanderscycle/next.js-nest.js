@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/instance: nestjs
     app.kubernetes.io/name: nestjs
     app.kubernetes.io/part-of: fullstack-website
-  name: gofiber
+  name: nestjs
 spec:
   selector:
     app.kubernetes.io/component: backend
@@ -19,5 +19,5 @@ spec:
     - name: http
       protocol: TCP
       port: 5000
-      nodePort: 30500
-      # targetPort: http
+      # nodePort: 30500
+      targetPort: http

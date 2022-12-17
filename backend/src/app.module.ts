@@ -10,7 +10,10 @@ import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 
-const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
+// const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
+//
+const file = 'localhost';
+const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
 
 @Module({
   imports: [

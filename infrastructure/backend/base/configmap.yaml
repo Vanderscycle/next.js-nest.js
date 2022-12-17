@@ -9,8 +9,16 @@ metadata:
     app.kubernetes.io/part-of: professional-website
   name: nestjs-config
 data:
-  POSTGRES_DB: postgresdb
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: root
-  POSTGRES_PORT: "5432"
-  POSTGRES_HOST: 10.244.0.6 # kubectl get po -o wide  (there has to be a better way)
+
+  DATABASE_HOST: 10.96.121.98
+  DATABASE_PORT: '5432'
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: root
+  DATABASE_NAME: postgresdb
+  MODE: DEV
+  BASE_PORT: '3000'
+  JWT_SECRET: test
+
+  # BASE_HOST=127.0.0.1
+
+# kubectl get po -o wide  (there has to be a better way)
