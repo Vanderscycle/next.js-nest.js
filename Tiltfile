@@ -35,19 +35,48 @@ sync_src_backend= sync('./backend', '/src')
 docker_build('localhost:5005/frontend-nextjs', context='./frontend', dockerfile='./frontend/Dockerfile', live_update=[sync_src_frontend] )
 docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./backend/Dockerfile', live_update=[sync_src_backend])
 
-
-# Apply Kubernetes manifests
-#   Tilt will build & push any necessary images, re-deploying your
-#   resources as they change.
+# Extensions are open-source, pre-packaged functions that extend Tilt
 #
-#   More info: https://docs.tilt.dev/api.html#api.k8s_yaml
+#   More info: https://github.com/tilt-dev/tilt-extensions
 #
-k8s_fullstack="./infrastructure/overlays/non-prod"
-k8s_yaml([kustomize(k8s_fullstack)])
+load('ext://helm_remote', 'helm_remote')
 
-k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
-k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-k8s_resource('nestjs',labels="backend",port_forwards='5000:30')
+modes = ['localhost', 'infrastructure'] 
+selection = modes[0]
+
+def localhost():
+  update_settings(suppress_unused_image_warnings=["localhost:5005/frontend-nextjs"])
+  update_settings(suppress_unused_image_warnings=["localhost:5005/backend-nestjs"])
+  local_resource('localhost-backend',
+   cmd='pnpm i',
+   dir='./backend',
+   serve_cmd='cd ./backend && pnpm run start:dev',
+   )
+  local_resource('localhost-frontend',
+   cmd='pnpm i',
+   dir='./frontend',
+   serve_cmd='cd ./frontend && pnpm run dev',
+   )
+
+  local_resource('localhost-postgres',
+   cmd='make dev-db',
+   )
+  # helm_remote('postgresql',
+  #   repo_name='bitnami',
+  #   set=['auth.postgresPassword=secretpassword'],
+  #   repo_url='https://charts.bitnami.com/bitnami')
+
+  return
+
+def infrastructure():
+  # Apply Kubernetes manifests
+  #   Tilt will build & push any necessary images, re-deploying your
+  #   resources as they change.
+  #
+  #   More info: https://docs.tilt.dev/api.html#api.k8s_yaml
+  k8s_fullstack="./infrastructure/overlays/non-prod"
+  k8s_yaml([kustomize(k8s_fullstack)])
+
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
 #   based on objects in the YAML manifests, e.g. Deployment name.
@@ -58,14 +87,18 @@ k8s_resource('nestjs',labels="backend",port_forwards='5000:30')
 #
 #   More info: https://docs.tilt.dev/api.html#api.k8s_resource
 #
-# k8s_resource('my-deployment',
-#              # map one or more local ports to ports on your Pod
-#              port_forwards=['5000:8080'],
-#              # change whether the resource is started by default
-#              auto_init=False,
-#              # control whether the resource automatically updates
-#              trigger_mode=TRIGGER_MODE_MANUAL
-# )
+  k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
+  k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
+  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
+  return
+            
+if selection == modes[0]:
+  localhost()
+
+if selection == modes[1]:
+  infrastructure()
+
+
 
 
 # Run local commands
@@ -87,11 +120,8 @@ k8s_resource('nestjs',labels="backend",port_forwards='5000:30')
 # )
 
 
-# Extensions are open-source, pre-packaged functions that extend Tilt
-#
-#   More info: https://github.com/tilt-dev/tilt-extensions
-#
-load('ext://git_resource', 'git_checkout')
+
+# load('ext://git_resource', 'git_checkout')
 
 
 # Organize logic into functions
