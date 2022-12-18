@@ -23,10 +23,10 @@ async function bootstrap() {
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('Nestjs-Nextjs backend template')
+    .setDescription('Contains logger, jwt, passport, db')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('template')
 
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
