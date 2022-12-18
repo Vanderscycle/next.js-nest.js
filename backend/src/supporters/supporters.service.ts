@@ -25,18 +25,40 @@ export class SupportersService {
   }
 
   async findAll(): Promise<SupporterInterface[]> {
-    return this.supporterRepository.find();
+    return await this.supporterRepository.find();
   }
 
   async findOne(id: number): Promise<SupporterInterface> {
-    return this.supporterRepository.findOneBy({ id });
+    return await this.supporterRepository.findOneBy({ id });
   }
 
-  update(id: number, updateSupporterDto: UpdateSupporterDto) {
-    return `This action updates a #${id} supporter ${updateSupporterDto}`;
+  async update(
+    id: number,
+    updateSupporterDto: UpdateSupporterDto,
+  ): Promise<SupporterInterface | undefined> {
+    const item: SupporterInterface = await this.supporterRepository.findOneBy({
+      id,
+    });
+    if (item) {
+      const supporter = new Supporter();
+      supporter.id = item.id;
+      supporter.name = updateSupporterDto.name;
+      supporter.password = updateSupporterDto.password;
+      supporter.username = updateSupporterDto.username;
+      return await this.supporterRepository.save({ ...supporter });
+    }
+    return;
+    // return `This action updates a #${id} supporter ${updateSupporterDto}`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} supporter`;
+  async remove(id: number): Promise<SupporterInterface | undefined> {
+    const item: SupporterInterface = await this.supporterRepository.findOneBy({
+      id,
+    });
+    if (item) {
+      await this.supporterRepository.delete(id);
+      return item;
+    }
+    return;
   }
 }
