@@ -1,5 +1,14 @@
-import { Controller, Delete, Get, Param, Post, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Request,
+} from '@nestjs/common';
 import { ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
+import { CreateUserDto } from './dto/user.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserInterface } from './interface/user.interface';
 import { UsersService } from './users.service';
@@ -8,7 +17,7 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Get('ids')
+  @Get()
   async getAllUsers(): Promise<UserInterface[]> {
     return this.usersService.findAll();
   }
@@ -30,8 +39,8 @@ export class UsersController {
   @ApiOkResponse({ type: UserEntity })
   @ApiBadRequestResponse() //because of class validators
   @Post()
-  async newEntry(@Request() req: any): Promise<any> {
-    console.log(req);
-    return this.usersService.createOne(req);
+  async newEntry(@Body() createUserDto: CreateUserDto): Promise<any> {
+    // return createUserDto;
+    return this.usersService.createOne(createUserDto);
   }
 }
