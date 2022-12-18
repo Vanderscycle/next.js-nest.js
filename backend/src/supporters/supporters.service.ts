@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSupporterDto } from './dto/create-supporter.dto';
@@ -12,6 +12,7 @@ export class SupportersService {
     @InjectRepository(Supporter)
     private supporterRepository: Repository<Supporter>,
   ) {}
+  private readonly logger = new Logger('Supporter');
 
   async create(
     createSupporterDto: CreateSupporterDto,
@@ -21,6 +22,7 @@ export class SupportersService {
     supporter.name = createSupporterDto.name;
     supporter.password = createSupporterDto.password;
     supporter.username = createSupporterDto.username;
+    this.logger.log(`LOGGER ${JSON.stringify(supporter)}`);
     return await this.supporterRepository.save({ ...supporter });
   }
 

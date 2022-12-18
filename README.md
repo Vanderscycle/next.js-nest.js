@@ -29,6 +29,7 @@ Init the app from the cli,
 #### Issues
 * Next.js + Tailwind [integration](https://stackoverflow.com/questions/74259178/how-can-i-apply-tailwind-css-in-app-folder-in-next-13)
 * type error
+* pino logger [backend](https://www.tomray.dev/nestjs-logging)
 ```  typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
