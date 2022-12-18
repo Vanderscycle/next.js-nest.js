@@ -40,14 +40,16 @@ docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./b
 #   More info: https://github.com/tilt-dev/tilt-extensions
 #
 load('ext://helm_remote', 'helm_remote')
-
+#WARN: only localhost works
+#TODO: add the tests
 modes = ['localhost', 'infrastructure'] 
-selection = modes[1]
+selection = modes[0]
 
 def localhost():
   update_settings(suppress_unused_image_warnings=["localhost:5005/frontend-nextjs"])
   update_settings(suppress_unused_image_warnings=["localhost:5005/backend-nestjs"])
   local_resource('localhost-backend',
+  resource_deps=['localhost-postgres'],
    cmd='pnpm i',
    dir='./backend',
    serve_cmd='cd ./backend && pnpm run start:dev',
@@ -67,6 +69,15 @@ def localhost():
   #   repo_url='https://charts.bitnami.com/bitnami')
 
   return
+
+def testing():
+  local_resource('localhost-testing-backend',
+  resource_deps=['localhost-postgres'],
+   cmd='pnpm i',
+   dir='./backend',
+   serve_cmd='cd ./backend && pnpm run test:cov',
+   )
+  # p run test:cov
 
 def infrastructure():
   # Apply Kubernetes manifests
@@ -89,12 +100,13 @@ def infrastructure():
 #
   k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
+  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001',resource_deps=['postgres'])
   k8s_resource('postgres',labels="db",port_forwards='5433:5432')
   return
             
 if selection == modes[0]:
   localhost()
+  testing()
 
 if selection == modes[1]:
   infrastructure()
