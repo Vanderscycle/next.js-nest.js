@@ -12,14 +12,14 @@
 #   multiline strings and common string operations such as formatting.
 #
 #   More info: https://docs.tilt.dev/api.html#api.warn
-print("""
------------------------------------------------------------------
-✨ Hello Tilt! This appears in the (Tiltfile) pane whenever Tilt
-   evaluates this file.
------------------------------------------------------------------
-""".strip())
-warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
-    tiltfile_path=config.main_path))
+# print("""
+# -----------------------------------------------------------------
+# ✨ Hello Tilt! This appears in the (Tiltfile) pane whenever Tilt
+#    evaluates this file.
+# -----------------------------------------------------------------
+# """.strip())
+# warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
+#     tiltfile_path=config.main_path))
 
 # Variables
 sync_src_frontend= sync('./frontend', '/src')
@@ -42,7 +42,7 @@ docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./b
 load('ext://helm_remote', 'helm_remote')
 
 modes = ['localhost', 'infrastructure'] 
-selection = modes[0]
+selection = modes[1]
 
 def localhost():
   update_settings(suppress_unused_image_warnings=["localhost:5005/frontend-nextjs"])
@@ -90,6 +90,7 @@ def infrastructure():
   k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
   k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
+  k8s_resource('postgres',labels="db",port_forwards='5433:5432')
   return
             
 if selection == modes[0]:

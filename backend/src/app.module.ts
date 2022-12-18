@@ -12,7 +12,8 @@ import { AuthModule } from './auth/auth.module';
 
 // const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 //
-const file = 'localhost';
+// const file = 'localhost';
+const file = 'development';
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
 
 @Module({

@@ -42,6 +42,7 @@ spec:
               memory: 256Mi
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
+              subPath: pgdata # important
               name: postgredb
       volumes:
         - name: postgredb

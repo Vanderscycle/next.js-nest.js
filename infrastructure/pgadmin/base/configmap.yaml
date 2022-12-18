@@ -9,5 +9,5 @@ metadata:
     app.kubernetes.io/part-of: fullstack-website
 data:
   PGADMIN_DEFAULT_EMAIL: "user@domain.com"
-  PGADMIN_DEFAULT_PASSWORD: "admin"
+  PGADMIN_DEFAULT_PASSWORD: "root"
   PGADMIN_PORT: "80"

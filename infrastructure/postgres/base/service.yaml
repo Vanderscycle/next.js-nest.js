@@ -29,6 +29,6 @@ metadata:
 subsets:
   - addresses:
       # https://stackoverflow.com/questions/68177379/how-to-connect-a-pod-in-kind-with-a-local-database
-      - ip: 10.96.121.98  # kubectl get po -o wide  (there has to be a better way)
+      - ip: 10.96.146.220   # kubectl get po -o wide  (there has to be a better way)
     ports:
       - port: 5432
