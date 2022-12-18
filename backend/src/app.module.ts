@@ -9,6 +9,7 @@ import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 // import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { SupportersModule } from './supporters/supporters.module';
 
 // const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 //
@@ -23,6 +24,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
     ProjectApiModule,
     UsersModule,
     AuthModule,
+    SupportersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
