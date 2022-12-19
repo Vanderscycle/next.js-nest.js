@@ -18,4 +18,11 @@ export class SupporterEntity extends BaseEntity {
   @ApiProperty()
   @Column('varchar')
   password: string;
+
+  constructor(name?: string, username?: string, password?: string) {
+    super();
+    this.name = name || '';
+    this.username = username || '';
+    this.password = password || '';
+  }
 }
