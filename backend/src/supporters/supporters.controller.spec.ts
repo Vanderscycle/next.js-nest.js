@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SupportersController } from './supporters.controller';
 import { SupportersService } from './supporters.service';
+import * as CREATE_USER_MOCK from './mock-data/createSupporterDto.mock.json';
 
 describe('SupportersController', () => {
   let controller: SupportersController;
@@ -14,7 +15,10 @@ describe('SupportersController', () => {
     controller = module.get<SupportersController>(SupportersController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('CRUD operations', () => {
+    it('POST should work', async () => {
+      const rest = await controller.create(CREATE_USER_MOCK);
+      expect(rest).toBeDefined();
+    });
   });
 });
