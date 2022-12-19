@@ -3,21 +3,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSupporterDto } from './dto/create-supporter.dto';
 import { UpdateSupporterDto } from './dto/update-supporter.dto';
-import { Supporter } from './entities/supporter.entity';
+import { SupporterEntity } from './entities/supporter.entity';
 import { SupporterInterface } from './interfaces/supporters.interface';
 
 @Injectable()
 export class SupportersService {
   constructor(
-    @InjectRepository(Supporter)
-    private supporterRepository: Repository<Supporter>,
+    @InjectRepository(SupporterEntity)
+    private supporterRepository: Repository<SupporterEntity>,
   ) {}
   private readonly logger = new Logger('Supporter');
 
   async create(
     createSupporterDto: CreateSupporterDto,
   ): Promise<SupporterInterface | undefined> {
-    const supporter = new Supporter();
+    const supporter = new SupporterEntity();
     supporter.id = 69;
     supporter.name = createSupporterDto.name;
     supporter.password = createSupporterDto.password;
@@ -42,7 +42,7 @@ export class SupportersService {
       id,
     });
     if (item) {
-      const supporter = new Supporter();
+      const supporter = new SupporterEntity();
       supporter.id = item.id;
       supporter.name = updateSupporterDto.name;
       supporter.password = updateSupporterDto.password;

@@ -10,7 +10,6 @@ import {
 import { SupportersService } from './supporters.service';
 import { CreateSupporterDto } from './dto/create-supporter.dto';
 import { UpdateSupporterDto } from './dto/update-supporter.dto';
-import { UserEntity } from 'src/users/entities/user.entity';
 import {
   ApiBody,
   ApiCreatedResponse,
@@ -20,13 +19,17 @@ import {
   ApiOperation,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { SupporterEntity } from './entities/supporter.entity';
 
 @Controller('supporters')
 export class SupportersController {
   constructor(private readonly supportersService: SupportersService) {}
 
   @ApiOperation({ summary: 'Add a new user/supporter' })
-  @ApiCreatedResponse({ description: 'Created Succesfully', type: UserEntity })
+  @ApiCreatedResponse({
+    description: 'Created Succesfully',
+    type: SupporterEntity,
+  })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
   @ApiBody({ type: CreateSupporterDto })
@@ -39,7 +42,7 @@ export class SupportersController {
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
   @ApiOkResponse({
     description: 'The resources were returned successfully',
-    type: UserEntity,
+    type: SupporterEntity,
     isArray: true,
   })
   @Get()
@@ -53,7 +56,7 @@ export class SupportersController {
   @ApiOkResponse({
     description: 'The resource was returned successfully',
     status: 200,
-    type: UserEntity,
+    type: SupporterEntity,
   })
   // @ApiQuery({ id: 'number', required: true })
   @Get(':id')
@@ -68,7 +71,7 @@ export class SupportersController {
   @ApiOkResponse({
     description: 'The resource was updated successfully',
     status: 200,
-    type: UserEntity,
+    type: SupporterEntity,
   })
   @Patch(':id')
   update(
@@ -83,7 +86,7 @@ export class SupportersController {
   @ApiNotFoundResponse({ description: 'Resource not found' })
   @ApiOkResponse({
     description: 'The resource was returned successfully',
-    type: UserEntity,
+    type: SupporterEntity,
   })
   @Delete(':id')
   remove(@Param('id') id: string) {
