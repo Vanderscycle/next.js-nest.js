@@ -30,6 +30,7 @@ Init the app from the cli,
 - [auth/jwt](https://www.youtube.com/watch?v=_L225zpUK0M)
 - [configService](https://progressivecoder.com/one-stop-guide-to-nestjs-config-environment-variables/) guide
 - testing/svc [testing](https://github.com/jmcdo29/testing-nestjs/blob/main/apps/typeorm-sample/src/cat/cat.controller.spec.ts)
+- adding class [ validator ](https://github.com/typestack/class-validator#inheriting-validation-decorators)
 
 #### Issues
 

@@ -7,7 +7,7 @@ export default defineConfig({
   viewportHeight: 1800,
   e2e: {
     setupNodeEvents(on, config) {
-      config.excludeSpecPattern = "**/2-advanced-examples/*.js";
+      config.excludeSpecPattern = "**/2-advanced-examples/*.{cy,spec}.js";
       return config 
       // implement node event listeners here
     },

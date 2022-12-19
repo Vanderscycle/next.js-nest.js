@@ -46,18 +46,25 @@ modes = ['localhost', 'infrastructure']
 selection = modes[0]
 
 def localhost():
+
+  #variables
   update_settings(suppress_unused_image_warnings=["localhost:5005/frontend-nextjs"])
   update_settings(suppress_unused_image_warnings=["localhost:5005/backend-nestjs"])
+  
+  # Local ressources
   local_resource('localhost-backend',
   resource_deps=['localhost-postgres'],
-   cmd='pnpm i',
-   dir='./backend',
+   # cmd='pnpm run start:dev', #WARN: otherwise it nevers refresh
+   # dir='./backend',
    serve_cmd='cd ./backend && pnpm run start:dev',
+   deps='./backend/src'
    )
   local_resource('localhost-frontend',
-   cmd='pnpm i',
-   dir='./frontend',
+  resource_deps=['localhost-postgres'],
+   # cmd='pnpm i',
+   # dir='./frontend',
    serve_cmd='cd ./frontend && pnpm run dev',
+   deps='./frontend/pages'
    )
 
   local_resource('localhost-postgres',
@@ -71,13 +78,19 @@ def localhost():
   return
 
 def testing():
+  #TODO: raise a ticket to ask how to only have failed when bad test
+  # Local resources
   local_resource('localhost-testing-backend',
   resource_deps=['localhost-postgres'],
-   cmd='pnpm i',
-   dir='./backend',
    serve_cmd='cd ./backend && pnpm run test:cov',
+   deps='./backend/dist/**/*.spec.js'
    )
-  # p run test:cov
+  local_resource('localhost-testing-frontend',
+  resource_deps=['localhost-postgres'],
+   serve_cmd='cd ./frontend && pnpm run cypress:run',
+   deps=['./frontend/e2e/**/*.{cy,spec}.js']
+
+   )
 
 def infrastructure():
   # Apply Kubernetes manifests
@@ -102,7 +115,6 @@ def infrastructure():
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
   k8s_resource('nestjs',labels="backend",port_forwards='5000:3001',resource_deps=['postgres'])
   k8s_resource('postgres',labels="db",port_forwards='5433:5432')
-  return
             
 if selection == modes[0]:
   localhost()
