@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 # env $(cat ../common/envs/development.env | xargs)
-ENV_PATH="$PWD/src/common/envs/development.env"
+ENV_PATH="$PWD/src/common/envs/localhost.env"
 source "$ENV_PATH"
 
 # echo "$DATABASE_NAME"

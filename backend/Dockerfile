@@ -32,12 +32,11 @@ RUN adduser --system --uid 1001 nestjs
 COPY --from=builder /app/dist ./dist
 COPY --from=deps /app/node_modules ./node_modules
 
-RUN ls -la
-
 USER nestjs
 
 EXPOSE 3000
 
+ENV MODE_ENV infrastructure 
+#TODO: make it production
 ENV PORT 3000
-
 CMD ["node", "dist/main.js"]

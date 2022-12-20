@@ -1,0 +1,6 @@
+postgresql:
+  auth:
+    postgresPassword: "root"
+    username: "postgres"
+    password: "root"
+    database: "postgres"
