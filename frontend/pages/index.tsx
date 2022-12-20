@@ -2,19 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Switch from "@mui/material/Switch";
-import { useBearStore } from '../stores/store'
+import BearCounter  from '../component/bearCounter'
+import Controls from '../component/controls'
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
-function BearCounter() {
-  const bears = useBearStore((state) => state.bears)
-  return <h1>{bears} around here ...</h1>
-}
-
-function Controls() {
-  const increasePopulation = useBearStore((state) => state.increasePopulation)
-  return <button onClick={increasePopulation}>one up</button>
-}
 
 export default function Home() {
   return (

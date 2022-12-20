@@ -40,10 +40,7 @@ docker_build('localhost:5005/backend-nestjs',context='./backend',dockerfile='./b
 #   More info: https://github.com/tilt-dev/tilt-extensions
 #
 load('ext://helm_remote', 'helm_remote')
-#WARN: only localhost works
-#TODO: add the tests
-modes = ['localhost', 'infrastructure'] 
-selection = modes[0]
+
 
 def localhost():
 
@@ -116,12 +113,17 @@ def infrastructure():
   k8s_resource('nestjs',labels="backend",port_forwards='5000:3001',resource_deps=['postgres'])
   k8s_resource('postgres',labels="db",port_forwards='5433:5432')
             
+#WARN: only localhost works
+#TODO: add the tests
+modes = ['localhost', 'infrastructure'] 
+selection = modes[1]
 if selection == modes[0]:
   localhost()
-  testing()
 
 if selection == modes[1]:
   infrastructure()
+
+testing()
 
 
 
