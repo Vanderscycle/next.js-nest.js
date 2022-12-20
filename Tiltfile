@@ -116,7 +116,7 @@ def infrastructure():
 #WARN: only localhost works
 #TODO: add the tests
 modes = ['localhost', 'infrastructure'] 
-selection = modes[1]
+selection = modes[0]
 if selection == modes[0]:
   localhost()
 
