@@ -3,7 +3,7 @@ kind-create:
 kind-reset:
 	# docker-crmAll
 	make kind-create
-	# tilt up
+	tilt up
 
 dev-start:
 	make dev-db

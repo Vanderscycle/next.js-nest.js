@@ -1,6 +1,7 @@
-postgresql:
-  auth:
-    postgresPassword: "root"
-    username: "postgres"
-    password: "root"
-    database: "postgres"
+global:
+  postgresql:
+    auth:
+      postgresPassword: "postgres"
+      username: "postgres"
+      password: "postgres"
+      database: "postgres"

@@ -1,10 +1,11 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: postgres
+  name: nginx
   labels:
   #   app.kubernetes.io/component: backend
   #   app.kubernetes.io/instance: nestjs
   #   app.kubernetes.io/name: nestjs
     app.kubernetes.io/part-of: fullstack-website
-  namespace: postgres
+  namespace: nginx
+

@@ -96,7 +96,7 @@ def infrastructure():
   #
   #   More info: https://docs.tilt.dev/api.html#api.k8s_yaml
   k8s_fullstack="./infrastructure/overlays/non-prod"
-  k8s_yaml([kustomize(k8s_fullstack)])
+  k8s_yaml([kustomize(k8s_fullstack, flags=['--enable-helm'])])
 
 # Customize a Kubernetes resource
 #   By default, Kubernetes resource names are automatically assigned
@@ -111,7 +111,7 @@ def infrastructure():
   k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
   k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
-  # k8s_resource('postgres',labels="db")
+  k8s_resource('db-postgresql',labels="db")
             
 #WARN: only localhost works
 #TODO: add the tests
@@ -125,9 +125,14 @@ if selection == modes[1]:
 
 testing()
 
-load('ext://helm_resource', 'helm_resource', 'helm_repo')
-helm_repo('bitnami', 'https://charts.bitnami.com/bitnami')
-helm_resource('postgres', 'bitnami/postgresql')
+# load('ext://helm_resource', 'helm_resource', 'helm_repo')
+# helm_repo('bitnami', 'https://charts.bitnami.com/bitnami')
+# helm_resource('postgres', 'bitnami/postgresql')
+# k8s_yaml(local('helm template -f ./infrastructure/helm/postgres/values.yaml ./infrastructure/helm/postgres/charts/postgresql'))
+# watch_file('./infrastructure/helm/postgres/charts/postgresql')
+# watch_file('./infrastructure/helm/postgres/values.yaml')
+
+# k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
 
 
 # Run local commands
