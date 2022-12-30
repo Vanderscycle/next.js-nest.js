@@ -14,8 +14,8 @@ import { LoggerModule } from 'nestjs-pino';
 
 // const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 //
-const file = 'localhost';
-// const file = 'infrastructure';
+// const file = 'localhost';
+const file = 'infrastructure';
 //
 console.log(process.env.NODE_ENV);
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);

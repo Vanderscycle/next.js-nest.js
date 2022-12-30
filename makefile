@@ -2,8 +2,8 @@ kind-create:
 	(cd ./infrastructure/localhost && bash run.sh)
 kind-reset:
 	# docker-crmAll
-	kind-create
-	tilt up
+	make kind-create
+	# tilt up
 
 dev-start:
 	make dev-db

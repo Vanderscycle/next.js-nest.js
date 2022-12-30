@@ -64,9 +64,9 @@ def localhost():
    deps='./frontend/pages'
    )
 
-  local_resource('localhost-postgres',
-   cmd='make dev-db',
-   )
+  # local_resource('localhost-postgres',
+  #  cmd='make dev-db',
+  #  )
   # helm_remote('postgresql',
   #   repo_name='bitnami',
   #   set=['auth.postgresPassword=secretpassword'],
@@ -110,13 +110,13 @@ def infrastructure():
 #
   k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001' ,resource_deps=['postgres'])
-  k8s_resource('postgres',labels="db")
+  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
+  # k8s_resource('postgres',labels="db")
             
 #WARN: only localhost works
 #TODO: add the tests
 modes = ['localhost', 'infrastructure'] 
-selection = modes[0]
+selection = modes[1]
 if selection == modes[0]:
   localhost()
 
@@ -125,7 +125,9 @@ if selection == modes[1]:
 
 testing()
 
-
+load('ext://helm_resource', 'helm_resource', 'helm_repo')
+helm_repo('bitnami', 'https://charts.bitnami.com/bitnami')
+helm_resource('postgres', 'bitnami/postgresql')
 
 
 # Run local commands

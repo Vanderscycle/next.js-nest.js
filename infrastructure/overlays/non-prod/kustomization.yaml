@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ../../frontend/overlays/non-prod
   - ../../pgadmin/overlays/non-prod
-  - ../../postgres/overlays/non-prod
+  # - ../../postgres/overlays/non-prod
   - ../../backend/overlays/non-prod
 patches:
   - target:
