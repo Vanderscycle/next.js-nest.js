@@ -6,20 +6,7 @@
 #   project's configuration.
 
 
-# Output diagnostic messages
-#   You can print log messages, warnings, and fatal errors, which will
-#   appear in the (Tiltfile) resource in the web UI. Tiltfiles support
-#   multiline strings and common string operations such as formatting.
-#
-#   More info: https://docs.tilt.dev/api.html#api.warn
-# print("""
-# -----------------------------------------------------------------
-# ✨ Hello Tilt! This appears in the (Tiltfile) pane whenever Tilt
-#    evaluates this file.
-# -----------------------------------------------------------------
-# """.strip())
-# warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
-#     tiltfile_path=config.main_path))
+
 
 # Variables
 sync_src_frontend= sync('./frontend', '/src')
@@ -43,7 +30,19 @@ load('ext://helm_remote', 'helm_remote')
 
 
 def localhost():
-
+# Output diagnostic messages
+#   You can print log messages, warnings, and fatal errors, which will
+#   appear in the (Tiltfile) resource in the web UI. Tiltfiles support
+#   multiline strings and common string operations such as formatting.
+#
+#   More info: https://docs.tilt.dev/api.html#api.warn
+  print("""
+  -----------------------------------------------------------------
+  ✨ Localhost Environment
+  -----------------------------------------------------------------
+  """.strip())
+# warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
+#     tiltfile_path=config.main_path))
   #variables
   update_settings(suppress_unused_image_warnings=["localhost:5005/frontend-nextjs"])
   update_settings(suppress_unused_image_warnings=["localhost:5005/backend-nestjs"])
@@ -63,10 +62,10 @@ def localhost():
    serve_cmd='cd ./frontend && pnpm run dev',
    deps='./frontend/pages'
    )
-
-  # local_resource('localhost-postgres',
-  #  cmd='make dev-db',
-  #  )
+# WARN: don't forget to change backend with localhost
+  local_resource('localhost-postgres',
+   cmd='make dev-db',
+   )
   # helm_remote('postgresql',
   #   repo_name='bitnami',
   #   set=['auth.postgresPassword=secretpassword'],
@@ -90,6 +89,11 @@ def testing():
    )
 
 def infrastructure():
+  print("""
+  -----------------------------------------------------------------
+  ✨ Kubernetes/Infrastructure Environment
+  -----------------------------------------------------------------
+  """.strip())
   # Apply Kubernetes manifests
   #   Tilt will build & push any necessary images, re-deploying your
   #   resources as they change.
@@ -116,7 +120,7 @@ def infrastructure():
 #WARN: only localhost works
 #TODO: add the tests
 modes = ['localhost', 'infrastructure'] 
-selection = modes[1]
+selection = modes[0]
 if selection == modes[0]:
   localhost()
 
