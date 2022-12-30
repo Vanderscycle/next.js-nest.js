@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: factorio-ingress
+  name: postgres-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     # nginx.ingress.kubernetes.io/rewrite-target: /
@@ -17,5 +17,5 @@ spec:
           service:
             name: db-postgresql
             port:
-              number: 27015
+              number: 5432
 

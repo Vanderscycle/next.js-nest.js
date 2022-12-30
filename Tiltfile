@@ -4,7 +4,8 @@
 #
 #   Uncomment, modify, and delete any commands as needed for your
 #   project's configuration.
-
+modes = ['localhost', 'infrastructure'] 
+selection = modes[0]
 
 
 
@@ -117,10 +118,8 @@ def infrastructure():
   k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
   k8s_resource('db-postgresql',labels="db")
             
-#WARN: only localhost works
 #TODO: add the tests
-modes = ['localhost', 'infrastructure'] 
-selection = modes[0]
+
 if selection == modes[0]:
   localhost()
 

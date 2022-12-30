@@ -15,7 +15,7 @@ data:
   # DATABASE_USER: postgres
   # DATABASE_PASSWORD: root
   # DATABASE_NAME: postgres
-  MODE_ENV: INFRASTRUCTURE
+  MODE_ENV: infrastructure
   # BASE_PORT: '3000'
   # JWT_SECRET: test
 

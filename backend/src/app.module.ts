@@ -12,12 +12,9 @@ import { AuthModule } from './auth/auth.module';
 import { SupportersModule } from './supporters/supporters.module';
 import { LoggerModule } from 'nestjs-pino';
 
-// const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
-//
-// const file = 'localhost';
-const file = 'infrastructure';
-//
-console.log(process.env.NODE_ENV);
+const file =
+  process.env.NODE_ENV === 'localhost' ? 'infrastructure' : 'localhost';
+
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
 
 @Module({
