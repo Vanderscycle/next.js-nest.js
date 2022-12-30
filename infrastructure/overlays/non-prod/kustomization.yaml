@@ -5,7 +5,7 @@ resources:
   - ../../frontend/overlays/non-prod
   - ../../pgadmin/overlays/non-prod
   - ../../backend/overlays/non-prod
-  - ../../helm/
+  - ../../helm/overlays/non-prod
 patches:
   - target:
       kind: Deployment
