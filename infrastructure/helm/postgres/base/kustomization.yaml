@@ -6,6 +6,7 @@ namespace: postgres
 
 resources:
 - namespace.yaml
+# - postgres-ingress.yaml
 
 helmCharts:
 - name: postgresql
