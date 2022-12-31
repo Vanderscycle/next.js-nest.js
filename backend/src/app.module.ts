@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProjectApiModule } from './project-api/project-api.module';
 import { ConfigModule } from '@nestjs/config';
 import { getEnvPath } from './common/env.helper';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -34,7 +33,6 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
       },
     }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    ProjectApiModule,
     UsersModule,
     AuthModule,
     SupportersModule,

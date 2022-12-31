@@ -17,10 +17,12 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { SupporterEntity } from './entities/supporter.entity';
 
+@ApiTags('supporters')
 @Controller('supporters')
 export class SupportersController {
   constructor(private readonly supportersService: SupportersService) {}
@@ -32,7 +34,7 @@ export class SupportersController {
   })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-  @ApiBody({ type: CreateSupporterDto })
+  @ApiBody({ description: 'creates new supporter', type: CreateSupporterDto })
   @Post()
   create(@Body() createSupporterDto: CreateSupporterDto) {
     return this.supportersService.create(createSupporterDto);
