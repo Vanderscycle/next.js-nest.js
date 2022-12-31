@@ -28,6 +28,7 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello(); //TODO: require the token and a valid token
   }
+
   @ApiOperation({ summary: 'Delete one user/supporter' })
   @ApiOkResponse({
     description: 'The version was returned successfully',
