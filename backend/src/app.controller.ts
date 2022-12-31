@@ -32,4 +32,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello(); //TODO: require the token and a valid token
   }
+
+  @Get('version')
+  getVersion(): string {
+    return this.appService.getVersion();
+  }
 }

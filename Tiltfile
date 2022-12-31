@@ -54,18 +54,27 @@ def localhost():
    # cmd='pnpm run start:dev', #WARN: otherwise it nevers refresh
    # dir='./backend',
    serve_cmd='cd ./backend && pnpm run start:dev',
-   deps='./backend/src'
+   deps='./backend/src',
+   readiness_probe=probe(
+      period_secs=60,
+      http_get=http_get_action(port=3001, path="/version")
+   )
    )
   local_resource('localhost-frontend',
   resource_deps=['localhost-postgres'],
    # cmd='pnpm i',
    # dir='./frontend',
    serve_cmd='cd ./frontend && pnpm run dev',
-   deps='./frontend/pages'
+   deps='./frontend/pages',
+   readiness_probe=probe(
+      period_secs=60,
+      http_get=http_get_action(port=3000, path="/health")
+   )
    )
 # WARN: don't forget to change backend with localhost
   local_resource('localhost-postgres',
    cmd='make dev-db',
+
    )
   # helm_remote('postgresql',
   #   repo_name='bitnami',
