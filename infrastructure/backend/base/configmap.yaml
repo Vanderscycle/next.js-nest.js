@@ -10,7 +10,7 @@ metadata:
   name: nestjs-config
 data:
 
-  # DATABASE_HOST: 10.96.73.175
+  DATABASE_HOST: 10.96.114.93
   # DATABASE_PORT: '5433'
   # DATABASE_USER: postgres
   # DATABASE_PASSWORD: root
