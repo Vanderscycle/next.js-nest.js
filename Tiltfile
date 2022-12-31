@@ -68,7 +68,7 @@ def localhost():
    deps='./frontend/pages',
    readiness_probe=probe(
       period_secs=60,
-      http_get=http_get_action(port=3000, path="/health")
+      http_get=http_get_action(port=3000, path="/api/version")
    )
    )
 # WARN: don't forget to change backend with localhost
