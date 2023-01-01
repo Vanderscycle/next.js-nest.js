@@ -24,6 +24,9 @@ Init the app from the cli,
 - MUI and Tailwind [install](https://tailwindcss.com/docs/guides/create-react-app)
 - [zustand](https://github.com/pmndrs/zustand) store
 - React [documentation](https://reactjs.org/docs/getting-started.html)
+- [Storybook](https://storybook.js.org/docs/react/get-started/install)
+- [cypress](https://docs.cypress.io/guides/overview/why-cypress)
+- Vest [form confirmation](https://vestjs.dev/docs/get_started)
 
 ### Backend
 
