@@ -38,6 +38,8 @@ Init the app from the cli,
 #### Issues
 
 - Next.js + Tailwind [integration](https://stackoverflow.com/questions/74259178/how-can-i-apply-tailwind-css-in-app-folder-in-next-13)
+- storybook w/ [pnpm](https://github.com/storybookjs/storybook/issues/13428) 
+  * [solution](https://github.com/storybookjs/storybook/issues/13428#issuecomment-1120233741) + addition to .npmrc 
 - type error
 - pino logger [backend](https://www.tomray.dev/nestjs-logging)
 

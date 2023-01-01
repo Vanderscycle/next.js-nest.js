@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "npx cypress open",
-    "cypress:run": "npx cypress run"
+    "cypress:run": "npx cypress run",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -30,6 +32,16 @@
     "autoprefixer": "^10.4.13",
     "cypress": "^12.1.0",
     "postcss": "^8.4.19",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "@storybook/react": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
+    "@babel/core": "^7.20.7",
+    "babel-loader": "^8.3.0"
   }
 }
