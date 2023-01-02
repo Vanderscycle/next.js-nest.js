@@ -5,9 +5,9 @@ import { variables } from 'lib/variables';
 //TODO: how do I make it more general with return types?
 
 export class BackendApi {
-  baseUrl: string = '';
-  groupEndpoint: string = '';
-  constructor(group: string, override?: boolean) {
+  baseUrl: string ;
+  groupEndpoint: string 
+  constructor(group: string, override: boolean=false) {
     if (!override) {
       this.groupEndpoint = group
       this.baseUrl = `http://${variables.backendUrl}:${variables.backendPort}/${group}`;
@@ -35,6 +35,7 @@ export class BackendApi {
   }
 
   async post(payload: UserInterface): Promise<UserInterface | undefined> {
+    console.log(this.baseUrl)
     try {
       const res = await fetch(`${this.baseUrl}`, { body: JSON.stringify(payload), headers: { 'Content-Type': 'application/json; charset=utf8', }, method: 'POST' });
       if (res.status === 200) {

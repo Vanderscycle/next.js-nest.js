@@ -1,4 +1,4 @@
 export const variables = {
-  backendUrl: process.env.BACKEND_URL,
-  backendPort: process.env.BACKEND_PORT
+  backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
+  backendPort: process.env.NEXT_PUBLIC_BACKEND_PORT
 }
