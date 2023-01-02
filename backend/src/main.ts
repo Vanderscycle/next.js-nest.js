@@ -20,6 +20,8 @@ async function bootstrap() {
   // console.log(port, url);
   // Logger
   app.useLogger(app.get(Logger));
+  // local dev
+  app.enableCors();
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()

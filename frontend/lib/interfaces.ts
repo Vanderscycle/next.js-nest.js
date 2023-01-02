@@ -4,3 +4,8 @@ export type UserInterface = {
   username: string;
   password: string;
 };
+
+export interface UserState {
+  users: UserInterface[]
+  addUser: (payload: UserInterface) => void
+}

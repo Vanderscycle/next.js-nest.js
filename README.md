@@ -23,6 +23,7 @@ Init the app from the cli,
 - Material UI [MUI](https://mui.com/)
 - MUI and Tailwind [install](https://tailwindcss.com/docs/guides/create-react-app)
 - [zustand](https://github.com/pmndrs/zustand) store
+  * using Zustand in more [depth](https://dev.to/franciscomendes10866/zustand-and-immer-with-react-5ajh)
 - React [documentation](https://reactjs.org/docs/getting-started.html)
 - [Storybook](https://storybook.js.org/docs/react/get-started/install)
 - [cypress](https://docs.cypress.io/guides/overview/why-cypress)
