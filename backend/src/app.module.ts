@@ -11,8 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { SupportersModule } from './supporters/supporters.module';
 import { LoggerModule } from 'nestjs-pino';
 
-const file =
-  process.env.NODE_ENV === 'localhost' ? 'infrastructure' : 'localhost';
+const file = process.env.NODE_ENV || 'infrastructure';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/${file}.env`);
 
