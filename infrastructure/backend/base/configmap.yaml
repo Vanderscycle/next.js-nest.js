@@ -10,15 +10,15 @@ metadata:
   name: nestjs-config
 data:
 
-  DATABASE_HOST: 10.96.114.93
-  # DATABASE_PORT: '5433'
-  # DATABASE_USER: postgres
-  # DATABASE_PASSWORD: root
-  # DATABASE_NAME: postgres
-  MODE_ENV: infrastructure
-  # BASE_PORT: '3000'
-  # JWT_SECRET: test
-
-  # BASE_HOST=127.0.0.1
+  DATABASE_HOST: 10.96.58.204
+  DATABASE_PORT: '5432'
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: postgres
+  DATABASE_NAME: postgres
+  NODE_ENV: infrastructure
+  BASE_PORT: '3001'
+  BACKEND_VERSION: 0.0.1
+  BASE_HOST: 127.0.0.1
+  JWT_SECRET: test
 
 # kubectl get po -o wide  (there has to be a better way)

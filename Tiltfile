@@ -5,7 +5,7 @@
 #   Uncomment, modify, and delete any commands as needed for your
 #   project's configuration.
 modes = ['localhost', 'infrastructure'] 
-selection = modes[0]
+selection = modes[1]
 
 
 
@@ -84,6 +84,11 @@ def localhost():
   return
 
 def testing():
+  print("""
+  -----------------------------------------------------------------
+  ✨ Testing henabled
+  -----------------------------------------------------------------
+  """.strip())
   #TODO: raise a ticket to ask how to only have failed when bad test
   # Local resources
   local_resource('localhost-testing-backend',

@@ -10,7 +10,7 @@ export class BackendApi {
   constructor(group: string, override: boolean=false) {
     if (!override) {
       this.groupEndpoint = group
-      this.baseUrl = `http://${variables.backendUrl}:${variables.backendPort}/${group}`;
+      this.baseUrl = `http://${variables.backendUrl || 'localhost'}:${variables.backendPort||3001}/${group}`;
     } else {
       this.baseUrl = group;
     }

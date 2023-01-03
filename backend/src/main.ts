@@ -15,8 +15,17 @@ async function bootstrap() {
     new FastifyAdapter({ logger: true }),
   );
   const config: ConfigService = app.get(ConfigService);
-  const port: number = config.get<number>('BASE_PORT');
-  const url: string = config.get<string>('BASE_HOST');
+
+  const port: number =
+    process.env.NODE_ENV !== 'localhost'
+      ? config.get<number>('BASE_PORT')
+      : Number(process.env.BASE_PORT);
+
+  const url: string =
+    process.env.NODE_ENV !== 'localhost'
+      ? config.get<string>('BASE_HOST')
+      : process.env.BASE_HOST;
+
   // console.log(port, url);
   // Logger
   app.useLogger(app.get(Logger));

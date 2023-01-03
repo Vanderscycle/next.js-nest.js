@@ -8,5 +8,7 @@ metadata:
     app.kubernetes.io/name: nextjs
     app.kubernetes.io/part-of: fullstack-website
   name: nextjs-config
-data:
-  key: value
+  data:
+  NEXT_PUBLIC_BACKEND_URL: localhost
+  NEXT_PUBLIC_BACKEND_PORT: 3001
+  NEXT_PUBLIC_FRONTEND_VERSION: 0.0.1
