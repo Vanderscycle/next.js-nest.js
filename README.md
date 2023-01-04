@@ -43,6 +43,7 @@ Init the app from the cli,
   * [solution](https://github.com/storybookjs/storybook/issues/13428#issuecomment-1120233741) + addition to .npmrc 
 - type error
 - pino logger [backend](https://www.tomray.dev/nestjs-logging)
+- 
 
 ````typescript: {
     // !! WARN !!

@@ -129,7 +129,7 @@ def infrastructure():
 #
   k8s_resource('nextjs',labels="frontend",port_forwards='3000:3000')
   k8s_resource('pgadmin',labels="backend",port_forwards='8000:80')
-  k8s_resource('nestjs',labels="backend",port_forwards='5000:3001')
+  k8s_resource('nestjs',labels="backend",port_forwards='3001:3001')
   k8s_resource('db-postgresql',labels="db")
             
 #TODO: add the tests

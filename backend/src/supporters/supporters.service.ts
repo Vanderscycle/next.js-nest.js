@@ -18,7 +18,7 @@ export class SupportersService {
     createSupporterDto: CreateSupporterDto,
   ): Promise<SupporterInterface | undefined> {
     const supporter = new SupporterEntity();
-    supporter.id = 69;
+    // supporter.id = 69;
     supporter.name = createSupporterDto.name;
     supporter.password = createSupporterDto.password;
     supporter.username = createSupporterDto.username;
