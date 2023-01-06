@@ -18,6 +18,10 @@ A revisited presention of Tilt
 
 Starting your dev environment should be simple, consistent, configurable and inline with productions endpoints. 
 
+## Requirements
+
+Docker
+
 ## Problems it solves:
 * The high number of terminal per service which is usually handled by a `terminal multiplexer`;
 * no warnings, when tests are failing;
@@ -46,10 +50,20 @@ Starting your dev environment should be simple, consistent, configurable and inl
 ## Other implementations
 * Using [Docker-compose](https://docs.tilt.dev/docker_compose.html) no major refactor needed for codebase.
 
+## Can used today 
+Install 
+```bash
+curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
+```
+
 ---
 # Future
 
 Tilt open-source support is ongoing and docker [supports](https://www.docker.com/blog/welcome-tilt-fixing-the-pains-of-microservice-development-for-kubernetes/) the team.
+
+## Atreides support
+
+I can help you set up your workflow.
 
 ---
 # NestJS
